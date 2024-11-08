@@ -1,0 +1,21 @@
+on:
+  push:  
+     branches:
+        - master
+
+
+jops:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Login to Docker hub"
+        run: docker login --username kataloneee --password dckr_pat_73yAtZhxYaPtuY_2oEYP9zdmnLo
+
+      - name: "Bulding docker image"
+        run: docker build -t kataloneee/myimage .
+
+      - name: "pushing to Docker hub"
+        run: docker push kataloneee/myimage    
